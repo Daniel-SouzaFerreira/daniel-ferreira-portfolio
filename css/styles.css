@@ -88,6 +88,8 @@
 #email-container {
     display: flex;
     justify-content: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
 }
 
 #email-container ion-icon,
@@ -108,6 +110,35 @@
     max-width: 20px;
 }
 
+#social-container li a:hover,
+#email-container a:hover {
+    opacity: .6;
+}
+
+#skill-info {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    display: none;
+}
+
+#skill-info #skills-info-title {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#skill-info i {
+    padding: 10px 10px;
+    font-size: 100px;
+}
+
+#skill-info #skills-description {
+    padding: 15px 10px 0px 10px;
+    text-align: justify;
+    font-weight: bold;
+    font-size: 15px;
+}
+
 /* About container */
 #name {
     font-size: 42px;
@@ -123,6 +154,7 @@
 .description {
     max-width: 75%;
     margin-bottom: 10px;
+    text-align: justify;
 }
 
 #btn-projects {
@@ -187,6 +219,11 @@
     margin-right: 10px;
 }
 
+.skills-box i:hover {
+    opacity: .6;
+    cursor: pointer;
+}
+
 /* Mobile */
 @media(max-width: 450px) {
     #container {
@@ -232,5 +269,9 @@
 
     .skills-box i {
         font-size: 50px;
+    }
+
+    #skill-info {
+        display: none
     }
 }
