@@ -1,35 +1,29 @@
 
 $(document).ready(function() {
-    const skillsInfoContainer = $('#skill-info');
-    const skillElement = $('#skills-container .skills-box i');
-
-    displayHoverSkill(skillsInfoContainer, skillElement);
-
-    skillElement.mouseleave(function() {
-        skillsInfoContainer.fadeOut(200, function() {
-            skillsInfoContainer.empty();
-        });
-    });
+    if ($(window).width() > 450) {
+        $('#extra-container')
+            .on('click', '#skills-container .skills-box i', displayClickedSkillInfo)
+            .on('mouseleave', '#skills-container .skills-box i', hideSkillInfoWhenMouseLeaveIcon)
+    }
 });
 
-function displayHoverSkill(skillsInfoContainer, skillElement) {
-    skillElement.click(function() {
-        const iconElement = $(this);
+function displayClickedSkillInfo() {
+    const skillsInfoContainer = $('#skill-info');
+    const iconElement = $(this);
 
-        skillsInfoContainer.empty();
-        skillsInfoContainer.append(`<p id="skills-info-title">${iconElement.attr('id')}</p>`);
+    skillsInfoContainer.empty();
+    skillsInfoContainer.append(`<p id="skills-info-title">${iconElement.attr('id')}</p>`);
 
-        const skillIconClasses = iconElement.attr('class');
-        const skillIcon = $('<i></i>').addClass(skillIconClasses);
-        skillsInfoContainer.append(skillIcon);
+    const skillIconClasses = iconElement.attr('class');
+    const skillIcon = $('<i></i>').addClass(skillIconClasses);
+    skillsInfoContainer.append(skillIcon);
 
-        const skillId = iconElement.attr('id');
-        if (!skillsInfoContainer.find('#skills-description').length) {
-            skillsInfoContainer.append(`<p id="skills-description">${getSkillInfoText(skillId)}</p>`);
-        }
+    const skillId = iconElement.attr('id');
+    if (!skillsInfoContainer.find('#skills-description').length) {
+        skillsInfoContainer.append(`<p id="skills-description">${getSkillInfoText(skillId)}</p>`);
+    }
 
-        skillsInfoContainer.slideDown(300);
-    });
+    skillsInfoContainer.slideDown(300);
 }
 
 function getSkillInfoText(skillId) {
@@ -50,4 +44,11 @@ function getSkillInfoText(skillId) {
         "Postman": "Ferramenta de testes para APIs, permitindo enviar requisições HTTP e visualizar respostas",
         "GIT": "Sistema de controle de versão distribuído, utilizado para rastrear mudanças no código-fonte de projetos"
     }[skillId] || "";
+}
+
+function hideSkillInfoWhenMouseLeaveIcon() {
+    const skillsInfoContainer = $('#skill-info');
+    skillsInfoContainer.fadeOut(150, function() {
+        skillsInfoContainer.empty();
+    });
 }

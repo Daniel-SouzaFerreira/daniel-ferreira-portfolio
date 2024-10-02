@@ -9,12 +9,12 @@
 /* Variables */
 
 :root {
-    --main-color: #54B689;
+    --main-color: #819dd0;
     --main-text-color: #FFF;
     --border-color: #999;
-    --bio-bg-color: #1E2A3A;
-    --bio-border-color: #293544;
-    --about-bg-color: #111821;
+    --bio-bg-color: #0a0b0d;
+    --bio-border-color: #999;
+    --about-bg-color: #020c1f;
 }
 
 /* General */
@@ -45,7 +45,6 @@
     padding: 50px;
 }
 
-
 /* Bio container */
 #bio-container h2 {
     margin-bottom: 25px;
@@ -59,11 +58,40 @@
     font-weight: bold;
 }
 
+#photo {
+    position: relative;
+    display: inline-block;
+}
+
 #bio-image {
     width: 175px;
     height: 175px;
     border-radius: 50%;
-    margin-bottom: 25px;
+    margin: 35px 0px;
+}
+
+#animated-arc {
+    position: absolute;
+    top: 42.5%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid transparent; /* Tornar a borda transparente */
+    box-shadow: 
+        0 0 0 15px var(--about-bg-color), /* Fundo do buraco */
+        0 0 0 20px var(--main-color); /* Cor do arco */
+    transform: translate(-50%, -50%);
+    animation: spin 5s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
 #social-container {
@@ -115,30 +143,6 @@
     opacity: .6;
 }
 
-#skill-info {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    display: none;
-}
-
-#skill-info #skills-info-title {
-    font-size: 25px;
-    font-weight: bold;
-}
-
-#skill-info i {
-    padding: 10px 10px;
-    font-size: 100px;
-}
-
-#skill-info #skills-description {
-    padding: 15px 10px 0px 10px;
-    text-align: justify;
-    font-weight: bold;
-    font-size: 15px;
-}
-
 /* About container */
 #name {
     font-size: 42px;
@@ -152,58 +156,56 @@
 }
 
 .description {
-    max-width: 75%;
+    max-width: 95%;
     margin-bottom: 10px;
     text-align: justify;
 }
 
-#btn-projects {
-    font-weight: bold;
-    font-size: 16px;
-    color: var(--main-text-color);
-    background-color: var(--main-color);
-    border: 2px solid var(--main-color);
-    border-radius: 5px;
-    text-decoration: none;
-    transition: .5s;
-    margin: 25px 0;
-    padding: 12px 10px;
-    width: 150px;
-    text-align: center;
+#tabs-navbar {
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    margin-top: 20px;
+}
+
+#tabs-navbar ul {
     display: flex;
 }
 
-#btn-projects ion-icon,
-#btn-projects span {
-    flex: 1 1 0;
+#tabs-navbar ul li {
+    padding: 10px 20px;
+    margin-right: 10px;
+    list-style-type: none;
+    border-radius: 10px;
+    border: 3px solid var(--border-color);
+    transition: .5;
+    font-weight: bold;
 }
 
-#btn-projects ion-icon {
-    font-size: 20px;
-    max-width: 20px;
+#tabs-navbar ul li:hover {
+    cursor: pointer;
+    background-color: var(--main-color);
+    color: var(--about-bg-color);
 }
 
-#btn-projects:hover {
-    background-color: transparent;
+.selected {
+    background-color: var(--main-color);
+    color: var(--about-bg-color);
 }
 
-#skills-section-title {
-    border-top: 1px solid var(--border-color);
+#section-title {
     padding-top: 20px;
     margin-bottom: 20px;
     font-size: 32px;
 }
 
 #skills-container {
-    display: flex;
-    flex-wrap: wrap;
     margin-top: 25px;
-}
-
-.skills-box {
-    flex: 1 1 33%;
-    max-width: 33%;
-    margin-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
 }
 
 .skills-title {
@@ -214,14 +216,99 @@
     border-left: 5px solid var(--main-color);
 }
 
+.skills-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .skills-box i {
     font-size: 45px;
-    margin-right: 10px;
+    padding: 10px;
 }
 
 .skills-box i:hover {
     opacity: .6;
     cursor: pointer;
+}
+
+#skill-info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    display: none;
+    text-align: center;
+    margin-top: 15px;
+}
+
+#skill-info #skills-info-title {
+    font-size: 25px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+#skill-info i {
+    padding: 20px 20px;
+    font-size: 100px;
+}
+
+#skill-info #skills-description {
+    padding: 15px 10px 0px 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#projects-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 80%;
+    margin-top: 30px;
+}
+
+.project {
+    text-decoration: none;
+    color: var(--main-text-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.project p {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.project-card {
+    width: 400px;
+    height: 250px;
+    padding: 90px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 3px solid var(--bio-border-color);
+    text-align: center;
+    font-size: 15px;
+    background-size: cover;
+    background-position: center;
+}
+
+.project-card:hover {
+    opacity: 0.8;
+}
+
+#thoughts {
+    background-image: url('../img/projects/thoughts.PNG');
+}
+
+#get-a-pet {
+    background-image: url('../img/projects/get-a-pet.PNG');
+}
+
+#wpp-web-clone {
+    background-image: url('../img/projects/wpp-web-clone.PNG');
 }
 
 /* Mobile */
@@ -256,15 +343,15 @@
         line-height: 26px;
     }
 
-    #btn-projects {
-        margin: 20px auto;
-    }
-
     .skills-box {
-        flex: 1 1 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         max-width: 100%;
         margin-bottom: 40px;
-        text-align: left;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
     }
 
     .skills-box i {
@@ -273,5 +360,28 @@
 
     #skill-info {
         display: none
+    }
+
+    .disable-click {
+        pointer-events: none;
+    }
+
+    #tabs-navbar ul {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #projects-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 80%;
+        margin: 30px auto;
+    }
+    
+    .project-card {
+        width: 300px;
+        height: 125px;
     }
 }
